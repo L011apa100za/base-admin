@@ -1,0 +1,351 @@
+<!--<!DOCTYPE html>-->
+<!--&lt;!&ndash;解决idea thymeleaf 表达式模板报红波浪线&ndash;&gt;-->
+<!--&lt;!&ndash;suppress ALL &ndash;&gt;-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    &lt;!&ndash; 引入公用部分 &ndash;&gt;-->
+<!--    <script th:replace="common/head::static"></script>-->
+<!--    &lt;!&ndash; 样式 &ndash;&gt;-->
+<!--    <link th:href="@{/sys/setting/css/setting.css}" rel="stylesheet" type="text/css"/>-->
+
+<!--    &lt;!&ndash; 百度富文本 &ndash;&gt;-->
+<!--    <script type="text/javascript" th:src="@{/common/ueditor/ueditor.config.js}"></script>-->
+<!--    <script type="text/javascript" th:src="@{/common/ueditor/ueditor.all.js}"></script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="layui-row layui-col-space15">-->
+<!--    &lt;!&ndash; 操作表单 &ndash;&gt;-->
+<!--    <div class="layui-col-md12">-->
+<!--        <div class="layui-card">-->
+<!--            <div class="layui-card-header">系统设置</div>-->
+<!--            <div class="layui-card-body">-->
+<!--                <form id="sysForm" class="layui-form layui-form-pane">-->
+<!--                    <div class="layui-form-item  layui-form-text">-->
+<!--                        <label class="layui-form-label">爱车名称</label>-->
+<!--                        <div class="layui-input-block">-->
+<!--                            <input type="text" name="sysName" th:value="${sys.sysName}" autocomplete="off"-->
+<!--                                   placeholder="系统名称"-->
+<!--                                   class="layui-input">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="layui-form-item  layui-form-text">-->
+<!--                        <label class="layui-form-label">系统logo图片</label>-->
+<!--                        <div class="layui-input-block">-->
+<!--                            <input type="text" name="sysLogo" th:value="${sys.sysLogo}" autocomplete="off"-->
+<!--                                   placeholder="系统logo图片"-->
+<!--                                   class="layui-input">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="layui-form-item  layui-form-text">-->
+<!--                        <label class="layui-form-label">系统公告</label>-->
+<!--                        <div class="layui-input-block">-->
+<!--                            <input type="text" id="sysNoticeText" th:value="${sys.sysNoticeText}" style="display: none;">-->
+<!--                            <script type="text/plain" id="sysNoticeTextEdit" style="width:100%;height:500px;"></script>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="layui-form-item  layui-form-text">-->
+<!--                        <label class="layui-form-label">系统底部信息</label>-->
+<!--                        <div class="layui-input-block">-->
+<!--                            <input type="text" name="sysBottomText" th:value="${sys.sysBottomText}" autocomplete="off"-->
+<!--                                   placeholder="系统底部信息"-->
+<!--                                   class="layui-input">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="layui-form-item  layui-form-text">-->
+<!--                        <label class="layui-form-label">是否开启API加密</label>-->
+<!--                        <div class="layui-input-block">-->
+<!--                            <input id="sysApiEncrypt" th:value="${sys.sysApiEncrypt}"  hidden="hidden"/>-->
+<!--                            <input type="radio" name="sysApiEncrypt" value="Y" title="是">-->
+<!--                            <input type="radio" name="sysApiEncrypt" value="N" title="否">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="layui-form-item  layui-form-text">-->
+<!--                        <label class="layui-form-label">是否开启OpenAPI限流</label>-->
+<!--                        <div class="layui-input-block">-->
+<!--                            <input id="sysOpenApiLimiterEncrypt" th:value="${sys.sysOpenApiLimiterEncrypt}"  hidden="hidden"/>-->
+<!--                            <input type="radio" name="sysOpenApiLimiterEncrypt" value="Y" title="是">-->
+<!--                            <input type="radio" name="sysOpenApiLimiterEncrypt" value="N" title="否">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="layui-form-item  layui-form-text">-->
+<!--                        <label class="layui-form-label">是否开启密码安全策略（密码复杂度仅在用户修改密码是做检查）</label>-->
+<!--                        <div class="layui-input-block">-->
+<!--                            <input id="sysCheckPwdEncrypt" th:value="${sys.sysCheckPwdEncrypt}"  hidden="hidden"/>-->
+<!--                            <input type="radio" name="sysCheckPwdEncrypt" value="Y" title="是">-->
+<!--                            <input type="radio" name="sysCheckPwdEncrypt" value="N" title="否">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="layui-form-item  layui-form-text">-->
+<!--                        <label class="layui-form-label">系统颜色</label>-->
+<!--                        <div class="layui-input-block">-->
+<!--                            <div class="layui-input-inline" style="width: 120px;">-->
+<!--                                <input type="text" value="" placeholder="请选择颜色" class="layui-input"  th:value="${sys.sysColor}" name="sysColor" id="sysColor">-->
+<!--                            </div>-->
+<!--                            <div class="layui-inline" style="left: -11px;">-->
+<!--                                <div id="test-form-sysColor"></div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="layui-form-item  layui-form-text">-->
+<!--                        <label class="layui-form-label">用户管理：初始、重置密码</label>-->
+<!--                        <div class="layui-input-block">-->
+<!--                            <input type="text" name="userInitPassword" th:value="${sys.userInitPassword}" autocomplete="off"-->
+<!--                                   placeholder="用户管理：初始、重置密码"-->
+<!--                                   class="layui-input">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="layui-form-item  layui-form-text">-->
+<!--                        <label class="layui-form-label">更新时间</label>-->
+<!--                        <div class="layui-input-block">-->
+<!--                            <input type="text" name="updateTime" th:value="${#dates.format(sys.updateTime, 'yyyy-MM-dd HH:mm:ss')}" autocomplete="off"-->
+<!--                                   placeholder="更新时间"-->
+<!--                                   class="layui-input" readonly="readonly" disabled="disabled">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="layui-form-item">-->
+<!--                        <div class="layui-input-block">-->
+<!--                            <a class="layui-btn" onclick="sysFormSave()">修改</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; 隐藏域 &ndash;&gt;-->
+<!--                    <input type="text" name="id"  th:value="${sys.id}" hidden="hidden"/>-->
+<!--                    <input type="text" name="createTime"  th:value="${#dates.format(sys.createTime, 'yyyy-MM-dd HH:mm:ss')}" hidden="hidden"/>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--</body>-->
+<!--&lt;!&ndash; js &ndash;&gt;-->
+<!--<script th:src="@{/sys/setting/js/setting.js}"></script>-->
+<!--</html>-->
+
+<!--下面是替代内容-->
+<!DOCTYPE html>
+<!--解决idea thymeleaf 表达式模板报红波浪线-->
+<!--suppress ALL -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- 引入公用部分 -->
+    <script th:replace="common/head::static"></script>
+    <!-- 样式 -->
+    <link th:href="@{/sys/user/css/user.css}" rel="stylesheet" type="text/css"/>
+    <style>
+        .checkbox-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .checkbox-list li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-row layui-col-space15">
+    <!-- 树 -->
+    <div class="layui-col-md6">
+        <div class="layui-card">
+            <div class="layui-card-header">用户列表</div>
+            <div class="layui-card-body">
+                <!-- 表格主体 -->
+                <table class="layui-hide" id="userTable" lay-filter="test"></table>
+                <!-- 模板 -->
+                <script type="text/html" id="userTableToolbarDemo">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-sm" lay-event="addData">新增<i class="layui-icon layui-icon-add-1"></i></button>
+                        <div style="display: inline-block; margin-left: 200px;">
+                            <input type="text" id="queryByLoginName" name="queryByLoginName" autocomplete="off"
+                                   placeholder="输入传感器名称" class="layui-input layui-btn-sm">
+                            <button class="layui-btn layui-btn-sm" lay-event="query">查询<i class="layui-icon layui-icon-search"></i></button>
+                        </div>
+                    </div>
+                </script>
+                <script type="text/html" id="userTableBarDemo">
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑<i class="layui-icon layui-icon-edit"></i></a>
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">停用<i class="layui-icon layui-icon-close"></i></a>
+                </script>
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header">当前工作传感器</div>
+            <div class="layui-card-body">
+                <!-- 表格主体 -->
+                <table class="layui-hide" id="userOnLineTable" lay-filter="test"></table>
+                <!-- 模板 -->
+                <script type="text/html" id="userOnLineTableToolbarDemo">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-sm" lay-event="reload">刷新</button>
+                    </div>
+                </script>
+                <script type="text/html" id="userOnLineTableBarDemo">
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="forced">关闭进程<i class="layui-icon layui-icon-close"></i></a>
+                </script>
+            </div>
+        </div>
+    </div>
+    <!-- 操作表单 -->
+    <div class="layui-col-md6">
+        <div class="layui-card">
+            <div class="layui-card-header">操作表单</div>
+            <div class="layui-card-body">
+                <form id="userForm" class="layui-form layui-form-pane">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">用户名</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="userName" autocomplete="off" placeholder="用户名"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">登录名</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="loginName" autocomplete="off" placeholder="登录名"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">密码</label>
+                        <div class="layui-input-block">
+                            <a class="layui-btn layui-btn-sm" onclick="resetPassword()">重置密码</a>
+                            <div class="layui-form-mid layui-word-aux" style="float: unset; margin-left: 10px;">
+                                初始、重置密码：<span th:text="${initPassword}"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">是否允许后台检测</label>
+                        <div class="layui-input-block">
+                            <input type="radio" name="valid" value="Y" title="是">
+                            <input type="radio" name="valid" value="N" title="否">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">是否允许多设备同时在线</label>
+                        <div class="layui-input-block">
+                            <input type="radio" name="limitMultiLogin" value="Y" title="是">
+                            <input type="radio" name="limitMultiLogin" value="N" title="否">
+                        </div>
+                    </div>
+                    <!--                    <div class="layui-form-item">-->
+                    <!--                        <label class="layui-form-label">限制允许登录的IP集合（用,隔开）</label>-->
+                    <!--                        <div class="layui-input-block">-->
+                    <!--                            <input type="text" name="limitedIp" autocomplete="off" placeholder="限制允许登录的IP集合（多个IP用英文逗号隔开）"-->
+                    <!--                                   class="layui-input">-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">设备更新时间</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="expiredTime" id="expiredTimeDate" autocomplete="off"
+                                       class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                    <!--                    <div class="layui-form-item">-->
+                    <!--                        <div class="layui-inline">-->
+                    <!--                            <label class="layui-form-label">最近修改密码时间</label>-->
+                    <!--                            <div class="layui-input-block">-->
+                    <!--                                <input type="text" name="lastChangePwdTime" autocomplete="off" class="layui-input"-->
+                    <!--                                       readonly="readonly">-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="layui-form-item">-->
+                    <!--                        <div class="layui-inline">-->
+                    <!--                            <label class="layui-form-label">最近登录时间</label>-->
+                    <!--                            <div class="layui-input-block">-->
+                    <!--                                <input type="text" name="lastLoginTime" autocomplete="off" class="layui-input"-->
+                    <!--                                       readonly="readonly">-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="layui-form-item">-->
+                    <!--                        <label class="layui-form-label">创建时间</label>-->
+                    <!--                        <div class="layui-input-block">-->
+                    <!--                            <input type="text" name="createTime" autocomplete="off" placeholder="创建时间"-->
+                    <!--                                   class="layui-input" readonly="readonly">-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="layui-form-item">-->
+                    <!--                        <label class="layui-form-label">更新时间</label>-->
+                    <!--                        <div class="layui-input-block">-->
+                    <!--                            <input type="text" name="updateTime" autocomplete="off" placeholder="更新时间"-->
+                    <!--                                   class="layui-input" readonly="readonly" disabled="disabled">-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+
+                    <!-- 隐藏域 -->
+                    <input type="text" name="userId" hidden="hidden"/>
+                </form>
+
+                <div class="layui-form-item">
+                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                        <legend>监测参数</legend>
+                    </fieldset>
+                    <div id="userMenuTree" class="demo-tree demo-tree-box layui-col-md6"
+                         style="height: 300px; overflow: scroll;">
+
+                        <ul class="checkbox-list">
+                            <li>
+                                <input type="checkbox" id="range-checkbox" name="parameters" value="range">
+                                <label for="range-checkbox">量程 0 ~ 10000 ppm</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="max-load-checkbox" name="parameters" value="max-load">
+                                <label for="max-load-checkbox">最大荷载</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="sensitivity-checkbox" name="parameters" value="sensitivity">
+                                <label for="sensitivity-checkbox">灵敏度 (20℃)</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="response-time-checkbox" name="parameters" value="response-time">
+                                <label for="response-time-checkbox">响应时间 (T90)</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="baseline-checkbox" name="parameters" value="baseline">
+                                <label for="baseline-checkbox">基线 (20℃)</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="baseline-drift-checkbox" name="parameters" value="baseline-drift">
+                                <label for="baseline-drift-checkbox">基线漂移 (-20℃ ~ 50℃)</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="resolution-checkbox" name="parameters" value="resolution">
+                                <label for="resolution-checkbox">分辨率</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="linearity-checkbox" name="parameters" value="linearity">
+                                <label for="linearity-checkbox">线性度</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="bias-checkbox" name="parameters" value="bias">
+                                <label for="bias-checkbox">偏压</label>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!--                <div class="layui-form-item">-->
+                <!--                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">-->
+                <!--                        <legend>用户权限</legend>-->
+                <!--                    </fieldset>-->
+                <!--                    <div id="userAuthorityTree" class="demo-tree demo-tree-box layui-col-md6"-->
+                <!--                         style="height: 300px; overflow: scroll;"></div>-->
+                <!--                </div>-->
+
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <a class="layui-btn" onclick="userFormSave()">保存</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<!-- js -->
+<script th:src="@{/sys/user/js/user.js}"></script>
+</html>

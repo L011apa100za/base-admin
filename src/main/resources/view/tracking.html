@@ -1,0 +1,483 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Dreamhub IT-solution HTML5 Template</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Favicon -->
+
+	<!-- bootstrap CSS -->
+	<link rel="stylesheet" href="static/css/bootstrap.min.css" type="text/css" media="all">
+	<!-- carousel CSS -->
+	<link rel="stylesheet" href="static/css/owl.carousel.min.css" type="text/css" media="all">
+	<!-- nivo-slider CSS -->
+	<link rel="stylesheet" href="static/css/nivo-slider.css" type="text/css" media="all">
+	<!-- animate CSS -->
+	<link rel="stylesheet" href="static/css/animate.css" type="text/css" media="all">
+	<!-- animated-text CSS -->
+	<link rel="stylesheet" href="static/css/animated-text.css" type="text/css" media="all">
+	<!-- font-awesome CSS -->
+	<link rel="stylesheet" href="static/css/all.min.css" type="text/css" media="all">
+	<!-- font-flaticon CSS -->
+	<link rel="stylesheet" href="static/css/flaticon.css" type="text/css" media="all">
+	<!-- theme-default CSS -->
+	<link rel="stylesheet" href="static/css/theme-default.css" type="text/css" media="all">
+	<!-- meanmenu CSS -->
+	<link rel="stylesheet" href="static/css/meanmenu.min.css" type="text/css" media="all">
+	<link rel="stylesheet" href="static/css/font-awesome.min.css" type="text/css" media="all">
+	<!-- Main Style CSS -->
+	<link rel="stylesheet" href="static/css/style.css" type="text/css" media="all">
+	<!-- transitions CSS -->
+	<link rel="stylesheet" href="static/css/owl.transitions.css" type="text/css" media="all">
+	<!-- venobox CSS -->
+	<link rel="stylesheet" href="static/css/venobox.css" type="text/css" media="all">
+	<!-- widget CSS -->
+	<link rel="stylesheet" href="static/css/widget.css" type="text/css" media="all">
+	<!-- responsive CSS -->
+	<link rel="stylesheet" href="static/css/responsive.css" type="text/css" media="all">
+	<!-- modernizr js -->
+	<script src="static/js/modernizr-3.5.0.min.js"></script>
+	<link href='static/css/css.css' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="static/css/bootstrap-icons.css">
+	<script src="https://cdn.tailwindcss.com"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	</link>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	</link>
+	<style>
+		/* Ensure the chart and other elements match the screenshot */
+		.chart-bar {
+			height: 20px;
+			background-color: #FFA500;
+		}
+
+		.chart-line {
+			stroke: #060607;
+			stroke-width: 2;
+		}
+
+		.tab-button.active {
+			background-color: #3b82f6;
+			color: white;
+		}
+
+		.container {
+			display: flex;
+			/* border: 1px solid red; */
+		}
+
+		.containe {
+			display: flex;
+			/* border: 1px solid red; */
+			float: left;
+			width: 1050px;
+			margin-left: 20px;
+		}
+
+		.my-10,
+		.my-11 {
+			/* 设置弹性容器,flex-grow: 1表示子项可以根据需要拉伸以填满剩余空间。 */
+			flex: 1;
+			margin-left: 10px;
+			/* max-width: 500px; */
+			/* 使用width无法实现 */
+		}
+
+		.fas,
+		.far {
+			display: flex;
+			height: 50px;
+		}
+
+		.header {
+			display: flex;
+			float: left;
+		}
+
+		.part1 {
+			display: flex;
+			float: left;
+			margin-left: 10px;
+		}
+
+		.part2 {
+			display: flex;
+			float: left;
+			margin-left: 25px;
+			width: 1065px;
+		}
+
+		.navigator {
+			background-color: #3b82f6;
+		}
+
+		body {
+			background-color: #f0f0f0;
+		}
+		.flex a{
+			font-size: medium;
+		}
+		.nav-title {
+			font-size: x-large;
+			color: black;
+			margin-left: 20px;
+		}
+		.sessionid {
+			margin-left: 180px;
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<!-- loder -->
+	<div class="loader-wrapper">
+		<div class="loader"></div>
+		<div class="loder-section left-section"></div>
+		<div class="loder-section right-section"></div>
+	</div>
+
+<div class="navigator">
+	<nav class="flex items-center justify-between py-2 px-4">
+		<div class="flex items-center">
+			<img src="static/picture/logo.png" alt="" width="50px">
+			<span class="nav-title">
+				氢链
+			</span>
+		</div>
+		<div class="flex">
+			<a class="text-white text-sm px-4 py-2 hover:bg-blue-800 transition-colors" href="index.html">
+				首页
+			</a>
+			<a class="text-white text-sm px-4 py-2 hover:bg-blue-800 transition-colors" href="#">
+				应用监控
+			</a>
+			<a class="text-white text-sm px-4 py-2 hover:bg-blue-800 transition-colors" href="#">
+				Web监控
+			</a>
+			<a class="text-white text-sm px-4 py-2 hover:bg-blue-800 transition-colors" href="#">
+				自定义
+			</a>
+			<a class="text-white text-sm px-4 py-2 hover:bg-blue-800 transition-colors" href="#">
+				数据分析
+			</a>
+			<a class="text-white text-sm px-4 py-2 hover:bg-blue-800 transition-colors" href="#">
+				告警规则
+			</a>
+			<a class="text-white text-sm px-4 py-2 hover:bg-blue-800 transition-colors" href="#">
+				设置
+			</a>
+			<a class="text-white text-sm px-4 py-2 hover:bg-blue-800 transition-colors" href="#">
+				帮助中心
+			</a>
+			<a class="text-white text-sm px-4 py-2 bg-yellow-600 hover:bg-yellow-700 transition-colors" href="#">
+				申请试用
+				<span class="text-xs bg-red-600 px-1 ml-1">
+					NEW
+				</span>
+			</a>
+		</div>
+		<div class="flex items-center">
+			<button class="text-white text-sm px-4 py-2 hover:bg-blue-800 transition-colors">
+				<i class="fas fa-th">
+				</i>
+			</button>
+			<button class="text-white text-sm px-4 py-2 hover:bg-blue-800 transition-colors">
+				<i class="fas fa-bell">
+				</i>
+			</button>
+			<button class="text-white text-sm px-4 py-2 hover:bg-blue-800 transition-colors">
+				<i class="fas fa-user">
+				</i>
+			</button>
+		</div>
+	</nav></div>
+
+
+	<div class="header">
+		<div class="bg-white w-64">
+			<ul class="text-gray-700">
+				<li class="flex items-center py-2 px-4 hover:bg-gray-100 cursor-pointer">
+					<i class="fas fa-tachometer-alt mr-2"></i>
+					<a href="warning.html">异常检测</a>
+				</li>
+				<!-- <i class="fas fa-chevron-down ml-auto"></i> -->
+				<li class="flex items-center py-2 px-4 bg-blue-100 cursor-pointer">
+					<i class="far fa-file-alt mr-2"></i>
+					响应云分析
+				</li>
+				<li class="flex items-center py-2 px-4 hover:bg-gray-100 cursor-pointer">
+					<i class="fas fa-desktop mr-2"></i>
+					环境湿度
+					<!-- <span class="bg-red-500 text-white text-xs px-2 py-1 ml-2 rounded-full">NEW</span> -->
+				</li>
+				<li class="flex items-center py-2 px-4 hover:bg-gray-100 cursor-pointer">
+					<i class="fas fa-tools mr-2"></i>
+					氢气消耗速率
+				</li>
+				<li class="flex items-center py-2 px-4 hover:bg-gray-100 cursor-pointer">
+					<i class="fas fa-tablet-alt mr-2"></i>
+					采样频率监控
+				</li>
+				<li class="flex items-center py-2 px-4 hover:bg-gray-100 cursor-pointer">
+					<i class="fas fa-database mr-2"></i>
+					电池温度
+				</li>
+				<li class="flex items-center py-2 px-4 hover:bg-gray-100 cursor-pointer">
+					<i class="fas fa-server mr-2"></i>
+					加氢状态
+				</li>
+				<li class="flex items-center py-2 px-4 hover:bg-gray-100 cursor-pointer">
+					<i class="fas fa-network-wired mr-2"></i>
+					网络分析
+				</li>
+				<li class="flex items-center py-2 px-4 hover:bg-gray-100 cursor-pointer">
+					<i class="fas fa-lock mr-2"></i>
+					能量储存效率
+				</li>
+				<li class="flex items-center py-2 px-4 hover:bg-gray-100 cursor-pointer">
+					<i class="fas fa-code mr-2"></i>
+					预计剩余寿命
+				</li>
+				<li class="flex items-center py-2 px-4 hover:bg-gray-100 cursor-pointer">
+					<i class="fas fa-chart-bar mr-2"></i>
+					用户分组
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- 第一部分 -->
+	<div class="part1">
+		<div class="container mx-auto mt-10">
+			<div class="bg-white p-6 shadow-md">
+				<!-- Time Range Buttons -->
+				<div class="flex items-center justify-between mb-4">
+					<div class="flex items-center">
+						<label class="mr-2">时间范围:</label>
+						<button id="btn1Hour" class="border border-blue-500 text-blue-500 rounded px-3 py-1">过去1小时</button>
+						<button id="btn48Hours" class="border border-gray-300 text-gray-500 rounded px-3 py-1 ml-2">过去48小时</button>
+						<button id="btnToday" class="border border-gray-300 text-gray-500 rounded px-3 py-1 ml-2">今天</button>
+						<button id="btnYesterday" class="border border-gray-300 text-gray-500 rounded px-3 py-1 ml-2">昨天</button>
+						<button id="btnCustom" class="border border-gray-300 text-gray-500 rounded px-3 py-1 ml-2">自定义</button>
+						<div class="border border-gray-300 text-gray-500 rounded px-3 py-1 ml-2 flex items-center">
+							<input type="text" class="outline-none" placeholder="2023-12-04 ~ 2023-12-04">
+							<i class="fas fa-calendar ml-2"></i>
+						</div>
+					</div>
+				</div>
+
+				<!-- Traffic Selection Buttons -->
+				<div class="flex items-center justify-between mb-4">
+					<div class="flex items-center">
+						<label class="mr-2">参数选择:</label>
+						<div class="border border-gray-300 text-gray-500 rounded px-3 py-1 mr-2">
+							<select class="outline-none">
+								<option>全部流量类型</option>
+								<option>全部类型</option>
+								<option>全部流量类型</option>
+								<option>全部流量类型</option>
+								<option>全部流量类型</option>
+							</select>
+						</div>
+						<button id="btnAllAppVersions"
+							class="border border-gray-300 text-gray-500 rounded px-3 py-1 mr-2">全部应用版本</button>
+						<button id="btnAllJSSDK" class="border border-gray-300 text-gray-500 rounded px-3 py-1 mr-2">车型</button>
+						<button id="btnAllGatewayTypes"
+							class="border border-gray-300 text-gray-500 rounded px-3 py-1 mr-2">氢气存储区块</button>
+						<button id="btnAllRegions" class="border border-gray-300 text-gray-500 rounded px-3 py-1 mr-2">电池单元</button>
+						<button id="btnMore" class="border border-gray-300 text-gray-500 rounded px-3 py-1">更多</button>
+					</div>
+					<div class="flex items-center">
+						<label class="mr-2"></label>
+						<div class="border border-gray-300 text-gray-500 rounded px-3 py-1">
+						</div>
+					</div>
+				</div>
+
+				<!-- User and Session ID Search -->
+				<div class="flex items-center justify-between">
+					<div class="flex items-center">
+						<label class="mr-2">用户查询:</label>
+						<input id="inputUserID" type="text" class="border border-gray-300 rounded px-3 py-1"
+							placeholder="输入用户ID或UMID">
+						<button id="btnSearchUser"
+							class="border border-blue-500 text-white bg-blue-500 rounded px-3 py-1 ml-2">查询</button>
+					</div>
+					<div class="flex items-center">
+						<label class="sessionid">SessionID查询:</label>
+						<input id="inputSessionID" type="text" class="border border-gray-300 rounded px-3 py-1"
+							placeholder="输入SessionID">
+						<button id="btnSearchSession"
+							class="border border-blue-500 text-white bg-blue-500 rounded px-3 py-1 ml-2">查询</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 第二部分 -->
+	<div class="part2">
+		<div class="container mx-auto mt-4 p-4 bg-white shadow-lg rounded-lg">
+			<div class="flex justify-between items-center mr-4">
+				<div class="flex items-center mr-100">
+					<div class="text-blue-600 font-bold text-xl">Model-H</div>
+					<!-- Other header elements go here -->
+				</div>
+				<div class="flex items-center">
+					<!-- User profile and settings go here -->	
+				</div>
+			</div>
+			<div class="grid grid-cols-2 gap-4 ml-4">
+				<div class="bg-blue-100 p-4 rounded-lg">
+					<div class="flex items-center justify-between">
+						<div class="text-blue-600">
+							<i class="fas fa-bolt "></i>前台电流值
+						</div>
+						<div class="text-sm">单位: mA</div>
+					</div>
+					<div class="text-3xl font-bold text-blue-600 mt-2">561,169.05mA</div>
+					<div class="text-sm text-blue-600">前一周同期 523,784.45mA <span class="text-red-500">↑ 7.14%</span>
+					</div>
+				</div>
+				<div class="bg-orange-100 p-4 rounded-lg">
+					<div class="flex items-center justify-between">
+						<div class="text-orange-600">
+							<i class="fas fa-thermometer-half"></i> 电池温度
+						</div>
+						<div class="text-sm">单位: °C</div>
+					</div>
+					<div class="text-3xl font-bold text-orange-600 mt-2">71.85°C</div>
+					<div class="text-sm text-orange-600">前一周同期 30°C <span class="text-red-500">↑ 6.2%</span></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 第三部分 -->
+	<div class="containe">
+		<div class="my-10">
+			<div class="bg-white shadow rounded-lg p-6">
+				<div class="flex items-center justify-between mb-4">
+					<h2 class="text-xl font-semibold text-gray-700">电池单元（1）</h2>
+					<div class="text-blue-600 cursor-pointer">刷新</div>
+				</div>
+				<div class="flex mb-4">
+					<button id="tabButton1" class="tab-button active flex-1 py-2 rounded-lg text-center mr-2"
+						onclick="toggleTabs(1)">氢气产生与消耗参数</button>
+					<button id="tabButton2" class="tab-button flex-1 py-2 rounded-lg text-center"
+						onclick="toggleTabs(2)">电池状态参数</button>
+				</div>
+				<div class="flex items-center justify-between mb-2">
+					<h3 class="text-lg font-medium text-gray-700">详细参数</h3>
+					<div class="text-sm text-gray-500">TOP4 | 详情</div>
+				</div>
+				<div class="space-y-3">
+					<div class="bg-blue-100 rounded-lg p-3 flex justify-between items-center">
+						<span>氢气产生速率</span>
+						<span>立方米/小时（m³/h）</span>
+					</div>
+					<div class="bg-blue-100 rounded-lg p-3 flex justify-between items-center">
+						<span>氢气消耗速率</span>
+						<span>立方米/小时（m³/h）</span>
+					</div>
+					<div class="bg-blue-100 rounded-lg p-3 flex justify-between items-center">
+						<span>氢气质量</span>
+						<span>克（g）</span>
+					</div>
+					<div class="bg-blue-100 rounded-lg p-3 flex justify-between items-center">
+						<span>氢气压力</span>
+						<span>兆帕（MPa）</span>
+					</div>
+					<!-- <div class="bg-blue-100 rounded-lg p-3 flex justify-between items-center">
+						<span>OE106</span>
+						<span>729,952mA</span>
+					</div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		function toggleTabs(selectedTab) {
+			var tabButton1 = document.getElementById('tabButton1');
+			var tabButton2 = document.getElementById('tabButton2');
+
+			if (selectedTab === 1) {
+				tabButton1.classList.add('active');
+				tabButton2.classList.remove('active');
+			} else {
+				tabButton2.classList.add('active');
+				tabButton1.classList.remove('active');
+			}
+		}
+	</script>
+	<!-- 
+	<div class="copy-right-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="copyright-title">
+						<h3>Copyright &copy; 2023.Company name All rights reserved.</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div> -->
+
+
+	<!-- scroll strat============  -->
+	<div class="scroll-area">
+		<div class="top-wrap">
+			<div class="go-top-btn-wraper">
+				<div class="go-top go-top-button">
+					<i class="fa fa-angle-double-up" aria-hidden="true"></i>
+					<i class="fa fa-angle-double-up" aria-hidden="true"></i>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- scroll end============  -->
+
+
+
+	<!-- jquery js -->
+	<script src="static/js/jquery-3.2.1.min.js"></script>
+	<!-- bootstrap js -->
+	<script src="static/js/bootstrap.min.js"></script>
+	<!-- carousel js -->
+	<script src="static/js/owl.carousel.min.js"></script>
+	<!-- counterup js -->
+	<script src="static/js/jquery.counterup.min.js"></script>
+	<!-- waypoints js -->
+	<script src="static/js/waypoints.min.js"></script>
+	<!-- wow js -->
+	<script src="static/js/wow.js"></script>
+	<!-- imagesloaded js -->
+	<script src="static/js/imagesloaded.pkgd.min.js"></script>
+	<!-- venobox js -->
+	<script src="static/js/venobox.js"></script>
+	<!-- ajax mail js -->
+	<script src="static/js/ajax-mail.js"></script>
+	<!--  animated-text js -->
+	<script src="static/js/animated-text.js"></script>
+	<!-- venobox min js -->
+	<script src="static/js/venobox.min.js"></script>
+	<!-- isotope js -->
+	<script src="static/js/isotope.pkgd.min.js"></script>
+	<!-- jquery meanmenu js -->
+	<script src="static/js/jquery.meanmenu.js"></script>
+	<!-- jquery scrollup js -->
+	<script src="static/js/jquery.scrollUp.js"></script>
+	<!-- theme js -->
+	<script src="static/js/theme.js"></script>
+
+
+
+</body>
+
+</html>

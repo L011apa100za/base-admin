@@ -1,0 +1,371 @@
+<!DOCTYPE>
+<!--解决idea thymeleaf 表达式模板报红波浪线-->
+<!--suppress ALL -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>系统监控</title>
+    <!-- 引入公用部分 -->
+    <script th:replace="common/head::static"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        h1, h6 {
+            text-align: center;
+            margin: 10px 0;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #444;
+        }
+        h6 {
+            font-size: 0.9em;
+            color: #777;
+        }
+        .container {
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+        .layui-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .layui-col-md6 {
+            flex: 1 1 calc(50% - 20px);
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        .layui-card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .layui-card-header {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .layui-card-body {
+            padding: 20px;
+        }
+        .layui-card-body p {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+        .layui-card-body span {
+            font-weight: bold;
+            color: #007BFF;
+        }
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .pagination button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1em;
+        }
+        .pagination button:hover {
+            background-color: #0056b3;
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<h1>Model H1 & H2 环境监控</h1>
+<h6>1秒刷新一次</h6>
+
+<div class="pagination">
+    <button onclick="showPage(1)">Model H1</button>
+    <button onclick="showPage(2)">Model H2</button>
+</div>
+
+<div id="page1" class="page active">
+    <div class="container">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md6">
+                <div class="layui-card">
+                    <div class="layui-card-header">智能驾驶配置</div>
+                    <div class="layui-card-body">
+                        <p>智能驾驶操作系统：<span id="os1">Model H1</span></p>
+                        <p>智能驾驶芯片：<span id="jvmJavaVersion1">NVIDIA DRIVE Orin * 2</span></p>
+                        <p>智能驾驶芯片算力：<span id="suanli1">508</span></p>
+                        <p>程序启动时间：<span id="runTime1"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <div class="layui-card">
+                    <div class="layui-card-header">CPU</div>
+                    <div class="layui-card-body">
+                        <p>CPU信息：<span id="cpuInfo1"></span></p>
+                        <p>汽车CPU使用率：<span id="cpuUseRate1">0%</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-col-md6">
+                <div class="layui-card">
+                    <div class="layui-card-header">消耗/利用率</div>
+                    <div class="layui-card-body">
+                        <p>额定功率氢消耗率：<span id="ramTotal1">0（G）</span></p>
+                        <p>怠速氢消耗率：<span id="ramUsed1">0（G）</span></p>
+                        <p>怠速氢消耗率：<span>0（G）</span></p>
+                        <p>有效氢利用率：<span>0（G）</span>g/s</p>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <div class="layui-card">
+                    <div class="layui-card-header">环境</div>
+                    <div class="layui-card-body">
+                        <p>工作环境温度：<span id="diskTotal1">0（G）</span></p>
+                        <p>存储温度：<span id="diskUsed1">0（G）</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-col-md6">
+                <div class="layui-card">
+                    <div class="layui-card-header">H2-BF</div>
+                    <div class="layui-card-body">
+                        <p>过载：<span id="jvmHeapInit1">20000ppm</span></p>
+                        <p>相应时间：<span id="jvmHeapMax1">69s</span></p>
+                        <p>工作温度：<span id="jvmHeapUsed1">39℃</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <div class="layui-card">
+                    <div class="layui-card-header">乘用车主要参数</div>
+                    <div class="layui-card-body">
+                        <p>一次加氢续航里程：<span id="jvmNonHeapInit1">650km</span></p>
+                        <p>燃料电池电堆功率：<span id="jvmNonHeapMax1">114kw</span></p>
+                        <p>储氢质量：<span id="jvmNonHeapUsed1">5.64kg</span></p>
+                        <p>百公里耗氢：<span id="jvmNonHeapCommitted1">0.94kg</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="page2" class="page">
+    <div class="container">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md6">
+                <div class="layui-card">
+                    <div class="layui-card-header">智能驾驶配置</div>
+                    <div class="layui-card-body">
+                        <p>智能驾驶操作系统：<span id="os1">Model H1</span></p>
+                        <p>智能驾驶芯片：<span id="jvmJavaVersion1">NVIDIA DRIVE Orin * 2</span></p>
+                        <p>智能驾驶芯片算力：<span id="suanli1">508</span></p>
+                        <p>程序启动时间：<span id="runTime1"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <div class="layui-card">
+                    <div class="layui-card-header">CPU</div>
+                    <div class="layui-card-body">
+                        <p>CPU信息：<span id="cpuInfo1"></span></p>
+                        <p>汽车CPU使用率：<span id="cpuUseRate1">0%</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-col-md6">
+                <div class="layui-card">
+                    <div class="layui-card-header">消耗/利用率</div>
+                    <div class="layui-card-body">
+                        <p>额定功率氢消耗率：<span id="ramTotal1">0（G）</span></p>
+                        <p>怠速氢消耗率：<span id="ramUsed1">0（G）</span></p>
+                        <p>怠速氢消耗率：<span>0（G）</span></p>
+                        <p>有效氢利用率：<span>0（G）</span>g/s</p>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <div class="layui-card">
+                    <div class="layui-card-header">环境</div>
+                    <div class="layui-card-body">
+                        <p>工作环境温度：<span id="diskTotal1">0（G）</span></p>
+                        <p>存储温度：<span id="diskUsed1">0（G）</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-col-md6">
+                <div class="layui-card">
+                    <div class="layui-card-header">H2-BF</div>
+                    <div class="layui-card-body">
+                        <p>过载：<span id="jvmHeapInit1">20000ppm</span></p>
+                        <p>相应时间：<span id="jvmHeapMax1">69s</span></p>
+                        <p>工作温度：<span id="jvmHeapUsed1">39℃</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <div class="layui-card">
+                    <div class="layui-card-header">乘用车主要参数</div>
+                    <div class="layui-card-body">
+                        <p>一次加氢续航里程：<span id="jvmNonHeapInit1">650km</span></p>
+                        <p>燃料电池电堆功率：<span id="jvmNonHeapMax1">114kw</span></p>
+                        <p>储氢质量：<span id="jvmNonHeapUsed1">5.64kg</span></p>
+                        <p>百公里耗氢：<span id="jvmNonHeapCommitted1">0.94kg</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+        function showPage(pageNumber) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.getElementById(`page${pageNumber}`).classList.add('active');
+        }
+    </script>
+</body>
+<script th:inline="javascript">
+// 模拟数据更新函数
+function updateData(pageId) {
+    const random = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+    const data = {
+        os: `Model H${pageId}`,
+        jvmJavaVersion: `NVIDIA DRIVE Orin * 2`,
+        suanli: random(500, 510),
+        runTime: `${random(0, 60)}:${random(0, 60)}`,
+        cpuInfo: `Intel Core i7`,
+        cpuUseRate: `${random(0, 100)}%`,
+        ramTotal: `${random(0, 10)}（G）`,
+        ramUsed: `${random(0, 10)}（G）`,
+        diskTotal: `${random(0, 100)}（G）`,
+        diskUsed: `${random(0, 100)}（G）`,
+        jvmHeapInit: `${random(19000, 21000)}ppm`,
+        jvmHeapMax: `${random(60, 70)}s`,
+        jvmHeapUsed: `${random(30, 40)}℃`,
+        jvmNonHeapInit: `${random(600, 700)}km`,
+        jvmNonHeapMax: `${random(100, 120)}kw`,
+        jvmNonHeapUsed: `${random(5, 6)}kg`,
+        jvmNonHeapCommitted: `${random(0.9, 1.0)}kg`
+    };
+
+    document.getElementById(`os${pageId}`).textContent = data.os;
+    document.getElementById(`jvmJavaVersion${pageId}`).textContent = data.jvmJavaVersion;
+    document.getElementById(`suanli${pageId}`).textContent = data.suanli;
+    document.getElementById(`runTime${pageId}`).textContent = data.runTime;
+    document.getElementById(`cpuInfo${pageId}`).textContent = data.cpuInfo;
+    document.getElementById(`cpuUseRate${pageId}`).textContent = data.cpuUseRate;
+    document.getElementById(`ramTotal${pageId}`).textContent = data.ramTotal;
+    document.getElementById(`ramUsed${pageId}`).textContent = data.ramUsed;
+    document.getElementById(`diskTotal${pageId}`).textContent = data.diskTotal;
+    document.getElementById(`diskUsed${pageId}`).textContent = data.diskUsed;
+    document.getElementById(`jvmHeapInit${pageId}`).textContent = data.jvmHeapInit;
+    document.getElementById(`jvmHeapMax${pageId}`).textContent = data.jvmHeapMax;
+    document.getElementById(`jvmHeapUsed${pageId}`).textContent = data.jvmHeapUsed;
+    document.getElementById(`jvmNonHeapInit${pageId}`).textContent = data.jvmNonHeapInit;
+    document.getElementById(`jvmNonHeapMax${pageId}`).textContent = data.jvmNonHeapMax;
+    document.getElementById(`jvmNonHeapUsed${pageId}`).textContent = data.jvmNonHeapUsed;
+    document.getElementById(`jvmNonHeapCommitted${pageId}`).textContent = data.jvmNonHeapCommitted;
+}
+
+// 每秒更新一次数据
+setInterval(() => {
+    updateData(1); // 更新Model H1的数据
+    updateData(2); // 更新Model H2的数据
+}, 1000);
+
+// 切换页面
+function showPage(pageId) {
+    document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+    document.getElementById(`page${pageId}`).classList.add('active');
+}
+    let port = [[${port}]];//端口
+
+    //websocket对象
+    let websocket = null;
+
+    //判断当前浏览器是否支持WebSocket
+    if ('WebSocket' in window) {
+        //动态获取域名或ip
+        let hostname = window.location.hostname;
+        port = window.location.port;
+        websocket = new WebSocket("ws://"+hostname+":" + port + ctx + "/websocket/monitor");
+    } else {
+        console.error("不支持WebSocket");
+    }
+
+    //连接发生错误的回调方法
+    websocket.onerror = function (e) {
+        console.error("WebSocket连接发生错误");
+    };
+
+    //连接成功建立的回调方法
+    websocket.onopen = function () {
+        console.log("WebSocket连接成功")
+    };
+
+    //接收到消息的回调方法
+    websocket.onmessage = function (event) {
+        //追加
+        if (event.data) {
+            let monitonJson = JSON.parse(event.data);
+<!--            $("#os").text(monitonJson.os);-->
+<!--            $("#runTime").text(monitonJson.runTime);-->
+<!--            $("#jvmJavaVersion").text(monitonJson.jvmJavaVersion);-->
+
+<!--            $("#jvmHeapInit").text(monitonJson.jvmHeapInit  + "（M）");-->
+<!--            $("#jvmHeapMax").text(monitonJson.jvmHeapMax  + "（M）");-->
+<!--            $("#jvmHeapUsed").text(monitonJson.jvmHeapUsed  + "（M）");-->
+<!--            $("#jvmHeapCommitted").text(monitonJson.jvmHeapCommitted  + "（M）");-->
+
+<!--            $("#jvmNonHeapInit").text(monitonJson.jvmNonHeapInit  + "（M）");-->
+<!--            $("#jvmNonHeapMax").text(monitonJson.jvmNonHeapMax  + "（M）");-->
+<!--            $("#jvmNonHeapUsed").text(monitonJson.jvmNonHeapUsed  + "（M）");-->
+<!--            $("#jvmNonHeapCommitted").text(monitonJson.jvmNonHeapCommitted  + "（M）");-->
+
+
+            $("#cpuUseRate").text(monitonJson.cpuUseRate + "%");
+<!--            $("#cpuInfo").text(monitonJson.cpuInfo);-->
+
+<!--            $("#ramTotal").text(monitonJson.ramTotal + "（G）");-->
+<!--            $("#ramUsed").text(monitonJson.ramUsed + "（G）");-->
+
+<!--            $("#diskTotal").text(monitonJson.diskTotal + "（G）");-->
+<!--            $("#diskUsed").text(monitonJson.diskUsed + "（G）");-->
+        }
+    }
+
+    //连接关闭的回调方法
+    websocket.onclose = function () {
+        console.log("WebSocket连接关闭")
+    };
+</script>
+</html>

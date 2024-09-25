@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<!--解决idea thymeleaf 表达式模板报红波浪线-->
+<!--suppress ALL -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- 引入公用部分 -->
+    <script th:replace="common/head::static"></script>
+    <!-- 样式 -->
+    <link th:href="@{/user/css/userinfo.css}" rel="stylesheet" type="text/css"/>
+    <!-- 引入ECharts -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+</head>
+<body>
+<div class="layui-row">
+    <!-- 氢气消耗量预测板块 -->
+    <div class="layui-col-md6">
+        <div class="layui-card">
+            <div class="layui-card-header">氢气消耗量预测</div>
+            <div class="layui-card-body">
+                <div id="hydrogenConsumptionChart" style="width: 100%; height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 电池寿命预测板块 -->
+    <div class="layui-col-md6">
+        <div class="layui-card">
+            <div class="layui-card-header">电池寿命预测</div>
+            <div class="layui-card-body">
+                <div id="batteryLifeChart" style="width: 100%; height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 新增：能源效率预测板块 -->
+    <div class="layui-col-md6">
+        <div class="layui-card">
+            <div class="layui-card-header">能源效率预测</div>
+            <div class="layui-card-body">
+                <div id="energyEfficiencyChart" style="width: 100%; height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 新增：环境影响分析板块 -->
+    <div class="layui-col-md6">
+        <div class="layui-card">
+            <div class="layui-card-header">环境影响分析</div>
+            <div class="layui-card-body">
+                <div id="environmentImpactChart" style="width: 100%; height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 新增：成本效益分析板块 -->
+    <div class="layui-col-md6">
+        <div class="layui-card">
+            <div class="layui-card-header">成本效益分析</div>
+            <div class="layui-card-body">
+                <div id="costBenefitChart" style="width: 100%; height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 新增：用户行为分析板块 -->
+    <div class="layui-col-md6">
+        <div class="layui-card">
+            <div class="layui-card-header">用户行为分析</div>
+            <div class="layui-card-body">
+                <div id="userBehaviorChart" style="width: 100%; height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 可以继续添加其他预测模块 -->
+</div>
+</body>
+<!-- js -->
+<script th:src="@{/user/js/userinfo.js}"></script>
+<script>
+    // 初始化ECharts图表
+    var hydrogenConsumptionChart = echarts.init(document.getElementById('hydrogenConsumptionChart'));
+    var batteryLifeChart = echarts.init(document.getElementById('batteryLifeChart'));
+    var energyEfficiencyChart = echarts.init(document.getElementById('energyEfficiencyChart'));
+    var environmentImpactChart = echarts.init(document.getElementById('environmentImpactChart'));
+    var costBenefitChart = echarts.init(document.getElementById('costBenefitChart'));
+    var userBehaviorChart = echarts.init(document.getElementById('userBehaviorChart'));
+
+    // 模拟从数据库获取数据并进行预测分析
+    function fetchPredictionData() {
+        // 这里应该是从数据库获取数据的代码
+        // 例如：var data = fetchDataFromDatabase();
+        // 为了演示，我们使用模拟数据
+        var hydrogenData = {
+            labels: ['2023-10-01', '2023-10-02', '2023-10-03', '2023-10-04', '2023-10-05'],
+            actual: [120, 132, 101, 134, 90],
+            predicted: [125, 130, 105, 135, 95]
+        };
+
+        var batteryData = {
+            labels: ['2023-10-01', '2023-10-02', '2023-10-03', '2023-10-04', '2023-10-05'],
+            actual: [80, 78, 75, 73, 70],
+            predicted: [79, 77, 74, 72, 70]
+        };
+
+        var energyEfficiencyData = {
+            labels: ['2023-10-01', '2023-10-02', '2023-10-03', '2023-10-04', '2023-10-05'],
+            actual: [85, 87, 86, 88, 89],
+            predicted: [86, 88, 87, 89, 90]
+        };
+
+        var environmentImpactData = {
+            labels: ['2023-10-01', '2023-10-02', '2023-10-03', '2023-10-04', '2023-10-05'],
+            actual: [20, 22, 21, 23, 24],
+            predicted: [21, 23, 22, 24, 25]
+        };
+
+        var costBenefitData = {
+            labels: ['2023-10-01', '2023-10-02', '2023-10-03', '2023-10-04', '2023-10-05'],
+            actual: [1500, 1550, 1600, 1650, 1700],
+            predicted: [1520, 1570, 1620, 1670, 1720]
+        };
+
+        var userBehaviorData = {
+            labels: ['2023-10-01', '2023-10-02', '2023-10-03', '2023-10-04', '2023-10-05'],
+            actual: [500, 520, 510, 530, 540],
+            predicted: [510, 530, 520, 540, 550]
+        };
+
+        // 配置氢气消耗量预测图表
+        var hydrogenOption = {
+            title: {
+                text: '氢气消耗量预测',
+                subtext: '基于历史数据'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['实际消耗量', '预测消耗量']
+            },
+            xAxis: {
+                type: 'category',
+                data: hydrogenData.labels
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    name: '实际消耗量',
+                    type: 'line',
+                    data: hydrogenData.actual
+                },
+                {
+                    name: '预测消耗量',
+                    type: 'line',
+                    data: hydrogenData.predicted
+                }
+            ]
+        };
+
+        // 配置电池寿命预测图表
+        var batteryOption = {
+            title: {
+                text: '电池寿命预测',
+                subtext: '基于历史数据'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['实际寿命', '预测寿命']
+            },
+            xAxis: {
+                type: 'category',
+                data: batteryData.labels
+            },
+            yAxis: {
+                type: 'value',
+                name: '寿命（%）'
+            },
+            series: [
+                {
+                    name: '实际寿命',
+                    type: 'line',
+                    data: batteryData.actual
+                },
+                {
+                    name: '预测寿命',
+                    type: 'line',
+                    data: batteryData.predicted
+                }
+            ]
+        };
+
+        // 配置能源效率预测图表
+        var energyEfficiencyOption = {
+            title: {
+                text: '能源效率预测',
+                subtext: '基于历史数据'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['实际效率', '预测效率']
+            },
+            xAxis: {
+                type: 'category',
+                data: energyEfficiencyData.labels
+            },
+            yAxis: {
+                type: 'value',
+                name: '效率（%）'
+            },
+            series: [
+                {
+                    name: '实际效率',
+                    type: 'line',
+                    data: energyEfficiencyData.actual
+                },
+                {
+                    name: '预测效率',
+                    type: 'line',
+                    data: energyEfficiencyData.predicted
+                }
+            ]
+        };
+
+        // 配置环境影响分析图表
+        var environmentImpactOption = {
+            title: {
+                text: '环境影响分析',
+                subtext: '基于历史数据'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['实际影响', '预测影响']
+            },
+            xAxis: {
+                type: 'category',
+                data: environmentImpactData.labels
+            },
+            yAxis: {
+                type: 'value',
+                name: '影响指数'
+            },
+            series: [
+                {
+                    name: '实际影响',
+                    type: 'line',
+                    data: environmentImpactData.actual
+                },
+                {
+                    name: '预测影响',
+                    type: 'line',
+                    data: environmentImpactData.predicted
+                }
+            ]
+        };
+
+        // 配置成本效益分析图表
+        var costBenefitOption = {
+            title: {
+                text: '成本效益分析',
+                subtext: '基于历史数据'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['实际成本', '预测成本']
+            },
+            xAxis: {
+                type: 'category',
+                data: costBenefitData.labels
+            },
+            yAxis: {
+                type: 'value',
+                name: '成本（元）'
+            },
+            series: [
+                {
+                    name: '实际成本',
+                    type: 'line',
+                    data: costBenefitData.actual
+                },
+                {
+                    name: '预测成本',
+                    type: 'line',
+                    data: costBenefitData.predicted
+                }
+            ]
+        };
+
+        // 配置用户行为分析图表
+        var userBehaviorOption = {
+            title: {
+                text: '用户行为分析',
+                subtext: '基于历史数据'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['实际行为', '预测行为']
+            },
+            xAxis: {
+                type: 'category',
+                data: userBehaviorData.labels
+            },
+            yAxis: {
+                type: 'value',
+                name: '行为指数'
+            },
+            series: [
+                {
+                    name: '实际行为',
+                    type: 'line',
+                    data: userBehaviorData.actual
+                },
+                {
+                    name: '预测行为',
+                    type: 'line',
+                    data: userBehaviorData.predicted
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        hydrogenConsumptionChart.setOption(hydrogenOption);
+        batteryLifeChart.setOption(batteryOption);
+        energyEfficiencyChart.setOption(energyEfficiencyOption);
+        environmentImpactChart.setOption(environmentImpactOption);
+        costBenefitChart.setOption(costBenefitOption);
+        userBehaviorChart.setOption(userBehaviorOption);
+    }
+
+    // 页面加载完成后调用数据获取函数
+    window.onload = fetchPredictionData;
+</script>
+</html>
